@@ -13,7 +13,6 @@ const ShowPitsData = ({pitsData}) => {
   if (playersData === null) {
     getPlayersForGameApi(apiPitsData[0].gameId).then((response) => {
         setPlayersData(response.data)
-        console.log(" getPlayersForGameApi " + JSON.stringify(response))
         if(!response.ok) {
           setError(response.message)
         }else{
@@ -27,17 +26,6 @@ const ShowPitsData = ({pitsData}) => {
 
       let playerIdsList = apiPitsData.map(pit => pit.playerId);
       playerIdsList = playerIdsList.filter((pit,idx) => playerIdsList.indexOf(pit)===idx);
-
-      // const uniquePlayerSet = new Set();
-      // const uniquePlayerList = apiPitsData.filter(pit => {
-      //   const playerdata = {name:pit.playerName, id:pit.playerId};
-      //   const isUnique = !uniquePlayerSet.has(playerdata);
-      //   if (isUnique) {
-      //     uniquePlayerSet.add(playerdata)
-      //   }
-      //   return isUnique;
-      // });
-      // console.log("Unique players " + JSON.stringify(uniquePlayerSet));
       
       const onPitClick = (pitClickDto) => {
           makeMoveApi(pitClickDto.id, pitClickDto.playerId).then((response) => {
@@ -47,11 +35,6 @@ const ShowPitsData = ({pitsData}) => {
             setIfGameOver(pitClickData.gameOver);
             setWinner(pitClickData.winnerName)
 
-            // if (!response.ok) {
-            //   console.log("Error:" + JSON.stringify(response))
-            // }else{
-            //   setError(null)
-            // }
           }).catch((error) => {
             alert(error.response.data)
             console.error("Error on Player move: " + JSON.stringify(error.response));
@@ -104,7 +87,6 @@ const ShowPitsData = ({pitsData}) => {
 
       const [newGame, setNewGame] = useState(false);
       const handleClickForNewGame = ()=> {
-        console.log("handled new game " + JSON.stringify(playersData))
           createGame(playersData[0].name , playersData[1].name).then((response) => {
             setPitsData(response.data.pitsData)
           setIfGameOver(false)
@@ -119,7 +101,6 @@ return (
       {
       let playerBoardLayout = "player-pits";
       if (pId % 2 === 0) { playerBoardLayout = "player-pits-reverse"}
-      console.log("players " + JSON.stringify(playersData))
       return (
       <div className={playerBoardLayout}>
       <h3> {playersData?playersData[index].name:""} </h3>
@@ -156,12 +137,6 @@ const PlayersAPIData = (gameId) => {
 
   getPlayersForGameApi(gameId.gameId).then((response) => {
       setPlayersData(response)
-      console.log(JSON.stringify(response))
-      if(!response.ok) {
-        console.error("error found " + response);
-      }else {
-        console.log("Players data " + JSON.stringify(playersData))
-      }
     }).catch((err) => {
       console.error("error found " + err);
     })
