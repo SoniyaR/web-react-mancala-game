@@ -27,17 +27,6 @@ const ShowPitsData = ({pitsData}) => {
 
       let playerIdsList = apiPitsData.map(pit => pit.playerId);
       playerIdsList = playerIdsList.filter((pit,idx) => playerIdsList.indexOf(pit)===idx);
-
-      // const uniquePlayerSet = new Set();
-      // const uniquePlayerList = apiPitsData.filter(pit => {
-      //   const playerdata = {name:pit.playerName, id:pit.playerId};
-      //   const isUnique = !uniquePlayerSet.has(playerdata);
-      //   if (isUnique) {
-      //     uniquePlayerSet.add(playerdata)
-      //   }
-      //   return isUnique;
-      // });
-      // console.log("Unique players " + JSON.stringify(uniquePlayerSet));
       
       const onPitClick = (pitClickDto) => {
           makeMoveApi(pitClickDto.id, pitClickDto.playerId).then((response) => {
@@ -47,11 +36,6 @@ const ShowPitsData = ({pitsData}) => {
             setIfGameOver(pitClickData.gameOver);
             setWinner(pitClickData.winnerName)
 
-            // if (!response.ok) {
-            //   console.log("Error:" + JSON.stringify(response))
-            // }else{
-            //   setError(null)
-            // }
           }).catch((error) => {
             alert(error.response.data)
             console.error("Error on Player move: " + JSON.stringify(error.response));
@@ -156,12 +140,6 @@ const PlayersAPIData = (gameId) => {
 
   getPlayersForGameApi(gameId.gameId).then((response) => {
       setPlayersData(response)
-      console.log(JSON.stringify(response))
-      if(!response.ok) {
-        console.error("error found " + response);
-      }else {
-        console.log("Players data " + JSON.stringify(playersData))
-      }
     }).catch((err) => {
       console.error("error found " + err);
     })

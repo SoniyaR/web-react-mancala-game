@@ -20,8 +20,6 @@ const handleResponse = async (response) => {
 export const getGameApi = async (id) => {
   try {
   const res = await client.post('/games/'+id)
-//     const response = await fetch(`${BASE_URL}/games/` + id);
-//     // const data = await response.json();
     return handleResponse(res);
   } catch (error) {
     console.error('Error getGameApi:', error);
@@ -31,7 +29,6 @@ export const getGameApi = async (id) => {
 
   export const createGame = async(player1, player2) => {
     try {
-      console.log("create game api call...")
       const names = [player1, player2]
       const res = await client.post('/games', {playerName: names})
       return res;
