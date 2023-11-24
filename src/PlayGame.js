@@ -13,7 +13,6 @@ const ShowPitsData = ({pitsData}) => {
   if (playersData === null) {
     getPlayersForGameApi(apiPitsData[0].gameId).then((response) => {
         setPlayersData(response.data)
-        console.log(" getPlayersForGameApi " + JSON.stringify(response))
         if(!response.ok) {
           setError(response.message)
         }else{
@@ -88,7 +87,6 @@ const ShowPitsData = ({pitsData}) => {
 
       const [newGame, setNewGame] = useState(false);
       const handleClickForNewGame = ()=> {
-        console.log("handled new game " + JSON.stringify(playersData))
           createGame(playersData[0].name , playersData[1].name).then((response) => {
             setPitsData(response.data.pitsData)
           setIfGameOver(false)
@@ -103,7 +101,6 @@ return (
       {
       let playerBoardLayout = "player-pits";
       if (pId % 2 === 0) { playerBoardLayout = "player-pits-reverse"}
-      console.log("players " + JSON.stringify(playersData))
       return (
       <div className={playerBoardLayout}>
       <h3> {playersData?playersData[index].name:""} </h3>
