@@ -13,19 +13,88 @@
   }
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  background-color: #282c34;
+  font-size: calc(8px + 2vmin);
   color: white;
+  flex-direction: column;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.bucket {
+  width: 60px;
+  height: 120px;
+  border: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 5px;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.largeBucket {
+  border: 4px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+  height: 120px;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.board-container {
+  align-items: top;
+  margin-top: 10px;
+}
+
+.board-space {
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player-pits {
+  margin: 4px;
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+}
+
+.player-pits-reverse {
+  margin: 4px;
+  padding: 4px;
+  display: flex;
+  flex-direction: row-reverse;
+  /* transform: rotate(180deg); */
+}
+
+.stone {
+  border: 2px solid #ccc;
+  padding: 3px;
+  margin: 1px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +104,32 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-container {
+  height: 80vh; /* Set the height to 100% of the viewport height */
+  /* display: block; */
+  /* flex-direction: column; */
+  justify-content: center;
+  /* align-items: center; */
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent; /* adjust size as needed */
+  border-right: 20px solid transparent;
+  border-top: 20px solid rgb(233, 54, 54); /* arrow color */
+  transform: rotate(-90deg);
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent; /* adjust size as needed */
+  border-right: 20px solid transparent;
+  border-top: 20px solid rgb(48, 105, 220); /* arrow color */
+  transform: rotate(90deg);
 }
